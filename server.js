@@ -17,14 +17,17 @@ app.get("/", function (request, response) {
 });
 
 app.get("/:num", function (request, response) {
+  
   var myobj = {};
- 
-    myobj.unix = request.params.num;   
-    var str = new Date(Number(request.params.num)),
-    locale = "en-us",
-    month = str.toLocaleString(locale, { month: "long" });
-    myobj.natural = str.getDate() + ' ' + month + ', ' + str.getFullYear();
- 
+  if (/\s/.test(request.params.num)) {
+    myobj.
+  } else {
+      myobj.unix = parseInt(request.params.num);   
+      var str = new Date(parseInt(request.params.num)*1000);
+      var locale = "en-us",
+      month = str.toLocaleString(locale, { month: "long" });
+      myobj.natural = str.getDate() + ' ' + month + ', ' + str.getFullYear();
+  }
   
   response.send(myobj);
 });
