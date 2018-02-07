@@ -19,8 +19,11 @@ app.get("/", function (request, response) {
 app.get("/:id", function (request, response) {
   var myobj = {};
   if (typeof Number(request.params.id) === 'number') {
-    myobj.unix = request.params.id;
-    myobj.natural = new Date(Number(request.params.id));
+    myobj.unix = request.params.id;   
+    var str = new Date(Number(request.params.id)),
+    locale = "en-us",
+    month = str.toLocaleString(locale, { month: "long" });
+    myobj.natural = str.getDate() + ' ' + month + ', ' + str.getFullYear();
   } else {
     myobj.unix = Math.round(new Date(request.params.id).getTime()/1000)
     myobj.natural = request.params.id;
