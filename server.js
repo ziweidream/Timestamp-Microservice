@@ -16,8 +16,11 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/:num", function (request, response) {
-  response.send("hello world" + request.param.num);
+app.get("/:id", function (request, response) {
+  var myobj = {};
+  var myobj['unix'] = request.params.id;
+  
+  response.send(request.params.id);
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
