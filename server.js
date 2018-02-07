@@ -20,7 +20,8 @@ app.get("/:num", function (request, response) {
   
   var myobj = {};
   if (/\s/.test(request.params.num)) {
-    myobj.
+    myobj.unix = new Date(request.params.num).getTime()/1000;
+    myobj.natural = request.params.num;
   } else {
       myobj.unix = parseInt(request.params.num);   
       var str = new Date(parseInt(request.params.num)*1000);
@@ -31,19 +32,6 @@ app.get("/:num", function (request, response) {
   
   response.send(myobj);
 });
-
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
-  response.sendStatus(200);
-});
-
-// Simple in-memory store for now
-var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
