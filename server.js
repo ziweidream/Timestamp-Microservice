@@ -28,7 +28,7 @@ app.get("/:num", function (request, response) {
       myobj.natural = null;
     }
   } else {
-    if (new Date(parseInt(request.params.num)!==null) {
+    if (new Date(parseInt(request.params.num))!==null) {
       myobj.unix = parseInt(request.params.num);   
       var str = new Date(parseInt(request.params.num)*1000);
       var locale = "en-us",
