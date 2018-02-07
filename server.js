@@ -18,9 +18,15 @@ app.get("/", function (request, response) {
 
 app.get("/:id", function (request, response) {
   var myobj = {};
-  var myobj['unix'] = request.params.id;
+  if (typeof Number(request.params.id) === 'number') {
+    myobj.unix = request.params.id;
+    myobj.natural = new Date(Number(request.params.id));
+  } else {
+    myobj.unix = Math.round(new Date(request.params.id).getTime()/1000)
+    myobj.natural = request.params.id;
+  } 
   
-  response.send(request.params.id);
+  response.send(myobj);
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
