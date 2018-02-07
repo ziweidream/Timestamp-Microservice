@@ -16,8 +16,8 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/dreams", function (request, response) {
-  response.send(dreams);
+app.get("/:num", function (request, response) {
+  response.send("hello world" + request.param.num);
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
