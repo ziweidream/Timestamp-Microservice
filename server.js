@@ -25,8 +25,10 @@ app.get("/:id", function (request, response) {
     month = str.toLocaleString(locale, { month: "long" });
     myobj.natural = str.getDate() + ' ' + month + ', ' + str.getFullYear();
   } else {
-    myobj.unix = Math.round(new Date(request.params.id).getTime()/1000)
-    myobj.natural = request.params.id;
+    var x = new Date(request.params.id);
+        
+    myobj.unix = x.getTime();
+    myobj.natural = new Date(request.params.id);
   } 
   
   response.send(myobj);
