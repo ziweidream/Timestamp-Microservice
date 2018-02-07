@@ -16,20 +16,15 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/:id", function (request, response) {
+app.get("/:num", function (request, response) {
   var myobj = {};
-  if (typeof Number(request.params.id) === 'number') {
-    myobj.unix = request.params.id;   
-    var str = new Date(Number(request.params.id)),
+ 
+    myobj.unix = request.params.num;   
+    var str = new Date(Number(request.params.num)),
     locale = "en-us",
     month = str.toLocaleString(locale, { month: "long" });
     myobj.natural = str.getDate() + ' ' + month + ', ' + str.getFullYear();
-  } else {
-    var x = new Date(request.params.id);
-        
-    myobj.unix = x.getTime();
-    myobj.natural = new Date(request.params.id);
-  } 
+ 
   
   response.send(myobj);
 });
